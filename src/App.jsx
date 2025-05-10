@@ -1,13 +1,14 @@
-import { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function App() {
   const [message, setMessage] = useState('');
 
+  // Fetch data from the Flask backend
   useEffect(() => {
     fetch('https://legendary-telegram-97777p995wqwcxjp6-5000.app.github.dev/api/greet')  // Correct external URL
-      .then((res) => res.json())
-      .then((data) => setMessage(data.message))
-      .catch((err) => console.error('Error fetching data:', err));
+      .then(response => response.json())
+      .then(data => setMessage(data.message))
+      .catch(error => console.error('Error:', error));
   }, []);
 
   return (
